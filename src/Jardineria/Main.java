@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class Main {
 	
 	public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Tienda tienda = new Tienda();
-        Carrito carrito = new Carrito();
-        int opcion = 0;
+        Scanner scanner = new Scanner(System.in); // Crear un escáner para leer entradas del usuario
+        Tienda tienda = new Tienda(); // Crear una instancia de la tienda
+        Carrito carrito = new Carrito(); // Crear una instancia del carrito de compras
+        int opcion = 0; // Variable para almacenar la opción elegida por el usuario
         
-        while (opcion != 8) {
+        while (opcion != 8) { // Bucle que muestra el menú hasta que el usuario elige salir (opción 8)
             System.out.println("Menú:");
             System.out.println("Seleccione una opción: ");
             System.out.println("1. Ver productos");
@@ -22,39 +22,40 @@ public class Main {
             System.out.println("7. Buscar producto por origen");
             System.out.println("8. Salir");
             
-            opcion = scanner.nextInt();
+            opcion = scanner.nextInt(); // Leer la opción que el usuario elige
             scanner.nextLine();
             
+         // Dependiendo de la opción elegida, se ejecuta una acción
             if (opcion == 1) {
-                tienda.mostrarProductos();
+                tienda.mostrarProductos(); // Muestra los productos disponibles
             } else if (opcion == 2) {
-                tienda.mostrarProductos();
+                tienda.mostrarProductos(); // Muestra los productos para que el usuario elija uno
                 System.out.print("Elige el número del producto: ");
-                int productoIndex = scanner.nextInt() - 1;
+                int productoIndex = scanner.nextInt() - 1; // El índice del producto seleccionado (restamos 1 porque los índices empiezan en 0)
                 Producto producto = tienda.obtenerProducto(productoIndex);
                 if (producto != null) {
-                    carrito.agregarProducto(producto);
+                    carrito.agregarProducto(producto); // Si el producto es válido, lo agrega al carrito
                 } else {
                     System.out.println("Producto no válido.");
                 }
             } else if (opcion == 3) {
-                carrito.mostrarCarrito();
+                carrito.mostrarCarrito(); // Muestra los productos en el carrito
             } else if (opcion == 4) {
-                tienda.ordenarMenorMayor();
+                tienda.ordenarMenorMayor(); // Ordena los productos por precio ascendente
             } else if (opcion == 5) {
-                tienda.ordenarMayorMenor();
+                tienda.ordenarMayorMenor(); // Ordena los productos por precio descendente
             } else if (opcion == 6) {
                 System.out.print("Ingrese el nombre del producto: ");
-                String nombre = scanner.nextLine();
-                tienda.buscarPorNombre(nombre);
+                String nombre = scanner.nextLine(); // Lee el nombre del producto
+                tienda.buscarPorNombre(nombre); 
             } else if (opcion == 7) {
                 System.out.print("Ingrese el origen del producto: ");
-                String origen = scanner.nextLine();
-                tienda.buscarPorOrigen(origen);
+                String origen = scanner.nextLine(); // Lee el origen del producto
+                tienda.buscarPorOrigen(origen); // Busca los productos que coincidan con el origen
             } else if (opcion == 8) {
-                System.out.println("Saliendo...");
+                System.out.println("Saliendo..."); // Mensaje de despedida cuando el usuario elige salir
             } else {
-                System.out.println("Opción no válida, intente de nuevo.");
+                System.out.println("Opción no válida, intente de nuevo."); // Mensaje de error si la opción es incorrecta
             }
         }
     }
